@@ -55,7 +55,7 @@ export default async function ProfilePage() {
   return (
     <PageContainer>
       <div className="max-w-2xl mx-auto">
-        <Card className="p-8">
+        <Card>
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-black dark:text-white">Edit Profile</h1>
             <Button href="/dashboard" variant="outline" className="!px-4 !py-2">

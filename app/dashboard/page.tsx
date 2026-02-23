@@ -34,7 +34,7 @@ export default async function DashboardPage() {
         </header>
 
         <main className="grid gap-6">
-          <Card className="p-6">
+          <Card>
             <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">User Information</h2>
             <div className="space-y-2 text-gray-700 dark:text-gray-300">
               <p><span className="font-medium">Email:</span> {user.email}</p>
@@ -43,7 +43,7 @@ export default async function DashboardPage() {
             </div>
           </Card>
 
-          <Card className="p-6 flex justify-between items-center">
+          <Card className="flex justify-between items-center">
             <div>
               <h2 className="text-xl font-semibold text-black dark:text-white">Profile Management</h2>
               <p className="text-gray-600 dark:text-gray-400">Update your public profile details and avatar.</p>
