@@ -20,12 +20,31 @@ export default async function ProfilePage() {
     const supabase = await createSupabaseServerClient()
     const { data: { user } } = await supabase.auth.getUser()
 
-    const updates = {
-      id: user?.id,
-      avatar_url: formData.get('avatar_url'),
+    let avatarUrl = formData.get('existing_avatar_url') as string;
+    const avatarFile = formData.get('avatar_file') as File;
+
+    if (avatarFile && avatarFile.size > 0) {
+      const fileExt = avatarFile.name.split('.').pop();
+      const filePath = `${user?.id}-${Date.now()}.${fileExt}`;
+      
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, avatarFile);
+        
+      if (uploadError) throw uploadError;
+
+      const { data } = supabase.storage.from('avatars').getPublicUrl(filePath);
+      avatarUrl = data.publicUrl;
     }
 
-    const { error } = await supabase.from('profiles').upsert(updates)
+    const updates = {
+      avatar_url: avatarUrl,
+    }
+
+    const { error } = await supabase
+      .from('profiles')
+      .update(updates)
+      .eq('id', user?.id)
     if (error) throw error
     
     redirect('/dashboard')
@@ -46,11 +65,16 @@ export default async function ProfilePage() {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label htmlFor="avatar_url" className="text-sm font-medium text-black">Avatar URL</label>
+            <label htmlFor="avatar_file" className="text-sm font-medium text-black">Profile Picture</label>
+            {profile?.avatar_url && (
+              <img src={profile.avatar_url} alt="Profile" className="w-24 h-24 rounded-full object-cover mb-2" />
+            )}
+            <input type="hidden" name="existing_avatar_url" value={profile?.avatar_url || ''} />
             <input 
-                id="avatar_url" 
-                name="avatar_url" 
-                defaultValue={profile?.avatar_url || ''} 
+                type="file"
+                id="avatar_file" 
+                name="avatar_file" 
+                accept="image/*"
                 className="border p-2 rounded text-black" 
             />
           </div>
