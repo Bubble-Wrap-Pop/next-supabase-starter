@@ -29,20 +29,19 @@ export default async function LoginPage(props: {
   }
 
   return (
-    <form action={login}>
-      <AuthForm
-        title="Log In"
-        error={searchParams.error}
-        submitLabel="Log In"
-        footer={
-          <p className="text-center text-sm mt-4 text-gray-600">
-            Don&apos;t have an account?{' '}
-            <Link href="/signup" className="text-blue-500 hover:underline">
-              Sign up
-            </Link>
-          </p>
-        }
-      />
-    </form>
+    <AuthForm
+      title="Log In"
+      error={searchParams.error}
+      submitLabel="Log In"
+      footer={
+        <p className="text-center text-sm mt-4 text-gray-600">
+          Don&apos;t have an account?{' '}
+          <Link href="/signup" className="text-blue-500 hover:underline">
+            Sign up
+          </Link>
+        </p>
+      }
+      action={login}
+    />
   )
 }

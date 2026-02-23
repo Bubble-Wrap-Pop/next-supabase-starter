@@ -35,21 +35,20 @@ export default async function SignupPage(props: {
   }
 
   return (
-    <form action={signup}>
-      <AuthForm
-        title="Create Account"
-        error={searchParams.error}
-        message={searchParams.message}
-        submitLabel="Sign Up"
-        footer={
-          <p className="text-center text-sm mt-4 text-gray-600">
-            Already have an account?{' '}
-            <Link href="/login" className="text-blue-500 hover:underline">
-              Log in
-            </Link>
-          </p>
-        }
-      />
-    </form>
+    <AuthForm
+      title="Create Account"
+      error={searchParams.error}
+      message={searchParams.message}
+      submitLabel="Sign Up"
+      footer={
+        <p className="text-center text-sm mt-4 text-gray-600">
+          Already have an account?{' '}
+          <Link href="/login" className="text-blue-500 hover:underline">
+            Log in
+          </Link>
+        </p>
+      }
+      action={signup}
+    />
   )
 }
