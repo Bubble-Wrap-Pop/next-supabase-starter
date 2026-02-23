@@ -1,33 +1,57 @@
 import Image from "next/image";
-import Link from "next/link";
+import { createSupabaseServerClient } from '@/utils/supabase/server';
+import { PageContainer } from '@/components/ui/PageGradientContainer';
+import { Button } from '@/components/ui/Button';
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6">
-          <h1 className="text-4xl font-bold text-black dark:text-white">
-            Supabase Auth Starter
-          </h1>
-          <p className="text-zinc-600 dark:text-zinc-400 text-lg">
-            A secure starting point for your Next.js application.
-          </p>
-          <div className="flex gap-4">
-            <Link 
-              href="/login" 
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Log In
-            </Link>
-            <Link 
-              href="/signup" 
-              className="border border-zinc-300 px-8 py-3 rounded-lg hover:bg-zinc-50 transition-colors text-black"
-            >
-              Sign Up
-            </Link>
+    <PageContainer className="flex flex-col items-center justify-center">
+      <main className="flex w-full max-w-4xl flex-col items-center justify-center px-8 text-center">
+        
+        <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-7xl">
+          Next.js + Supabase
+        </h1>
+        
+        <p className="mb-10 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
+          A production ready starter application featuring secure authentication, automated database migrations, and built in user profiles.
+        </p>
+
+        <div className="mb-16 flex flex-col gap-4 sm:flex-row sm:gap-6">
+          {user ? (
+            <Button href="/dashboard">
+              Go to Dashboard
+            </Button>
+          ) : (
+            <>
+              <Button href="/login">
+                Log In
+              </Button>
+              <Button href="/signup" variant="outline">
+                Sign Up
+              </Button>
+            </>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 w-full mt-8 border-t border-zinc-200 dark:border-zinc-800 pt-16">
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Authentication</h3>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Complete login and signup flows protected by Supabase Auth.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">Database security</h3>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Row Level Security enabled by default to keep user data private.</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">User Profiles</h3>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Automatic profile creation and avatar uploading built right in.</p>
           </div>
         </div>
+
       </main>
-    </div>
+    </PageContainer>
   );
 }
