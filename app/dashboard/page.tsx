@@ -14,6 +14,12 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single()
+
   const signout = async () => {
     'use server'
     const supabase = await createSupabaseServerClient()
@@ -35,11 +41,24 @@ export default async function DashboardPage() {
 
         <main className="grid gap-6">
           <Card>
-            <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">User Information</h2>
-            <div className="space-y-2 text-gray-700 dark:text-gray-300">
-              <p><span className="font-medium">Email:</span> {user.email}</p>
-              <p><span className="font-medium">User ID:</span> {user.id}</p>
-              <p><span className="font-medium">Last Sign In:</span> {new Date(user.last_sign_in_at!).toLocaleString()}</p>
+            <h2 className="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">User Information</h2>
+            <div className="flex items-center gap-6">
+              {profile?.avatar_url ? (
+                <img 
+                  src={profile.avatar_url} 
+                  alt="Avatar" 
+                  className="w-24 h-24 rounded-full object-cover border border-zinc-200 dark:border-zinc-700"
+                />
+              ) : (
+                <div className="w-24 h-24 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 border border-zinc-300 dark:border-zinc-700">
+                  No Image
+                </div>
+              )}
+              <div className="space-y-2 text-zinc-600 dark:text-zinc-400">
+                <p><span className="font-medium text-zinc-900 dark:text-zinc-300">Email:</span> {user.email}</p>
+                <p><span className="font-medium text-zinc-900 dark:text-zinc-300">User ID:</span> {user.id}</p>
+                <p><span className="font-medium text-zinc-900 dark:text-zinc-300">Last Sign In:</span> {new Date(user.last_sign_in_at!).toLocaleString()}</p>
+              </div>
             </div>
           </Card>
 
