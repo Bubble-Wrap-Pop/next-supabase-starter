@@ -68,7 +68,7 @@ export function AvatarInput({ existingAvatarUrl }: { existingAvatarUrl?: string 
         </div>
       )}
 
-      <input type="hidden" name="existing_avatar_url" value={selectedFile ? URL.createObjectURL(selectedFile) : existingAvatarUrl || ''} />
+      <input type="hidden" name="existing_avatar_url" value={isRemoved ? '' : (existingAvatarUrl || '')} />
       {isRemoved && (
         <input type="hidden" name="remove_avatar" value="true" />
       )}
