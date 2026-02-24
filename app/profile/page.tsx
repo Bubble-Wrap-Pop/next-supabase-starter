@@ -22,10 +22,13 @@ export default async function ProfilePage() {
     const supabase = await createSupabaseServerClient()
     const { data: { user } } = await supabase.auth.getUser()
 
+    const removeAvatar = formData.get('remove_avatar') === 'true';
     let avatarUrl = formData.get('existing_avatar_url') as string;
     const avatarFile = formData.get('avatar_file') as File;
 
-    if (avatarFile && avatarFile.size > 0) {
+    if (removeAvatar) {
+      avatarUrl = '';
+    } else if (avatarFile && avatarFile.size > 0) {
       const fileExt = avatarFile.name.split('.').pop();
       const filePath = `${user?.id}-${Date.now()}.${fileExt}`;
       
@@ -72,16 +75,22 @@ export default async function ProfilePage() {
             <div className="flex flex-col gap-1">
               <label htmlFor="avatar_file" className="text-sm font-medium">Profile Picture</label>
               {profile?.avatar_url && (
-                <img src={profile.avatar_url} alt="Profile" className="w-24 h-24 rounded-full object-cover mb-2" />
+                <div className="flex flex-col gap-3 mb-2">
+                  <img src={profile.avatar_url} alt="Profile" className="w-24 h-24 rounded-full object-cover border border-zinc-200 dark:border-zinc-700" />
+                  <label className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 cursor-pointer">
+                    <input type="checkbox" name="remove_avatar" value="true" className="rounded border-zinc-300 dark:border-zinc-700" />
+                    Remove current picture
+                  </label>
+                </div>
               )}
               <input type="hidden" name="existing_avatar_url" value={profile?.avatar_url || ''} />
               <input 
-                  type="file"
-                  id="avatar_file" 
-                  name="avatar_file" 
-                  accept="image/*"
-                  className="border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-2 rounded-lg text-zinc-900 dark:text-white w-full" 
-              />
+                type="file"
+                id="avatar_file" 
+                name="avatar_file" 
+                accept="image/*"
+                className="w-full cursor-pointer rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-600 transition-all file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-zinc-100 file:px-4 file:py-1 file:text-sm file:font-semibold file:text-zinc-900 hover:file:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:file:bg-zinc-800 dark:file:text-white dark:hover:file:bg-zinc-700"
+            />
             </div>
 
             <Button type="submit" className="mt-4">
