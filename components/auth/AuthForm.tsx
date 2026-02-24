@@ -25,7 +25,7 @@ export function AuthForm({
       <div className="w-full max-w-sm">
         <form action={action}>
           <Card>
-            <h1 className="text-2xl font-semibold text-center mb-4 text-black dark:text-white">
+            <h1 className="text-2xl font-semibold text-center mb-4 text-zinc-900 dark:text-white">
               {title}
             </h1>
 

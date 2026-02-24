@@ -57,7 +57,7 @@ export default async function ProfilePage() {
       <div className="max-w-2xl mx-auto">
         <Card>
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-black dark:text-white">Edit Profile</h1>
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Edit Profile</h1>
             <Button href="/dashboard" variant="outline" className="!px-4 !py-2">
               Back to Dashboard
             </Button>
@@ -65,12 +65,12 @@ export default async function ProfilePage() {
 
           <form action={updateProfile} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
-              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Email (Read Only)</label>
-              <input value={user.email} disabled className="border p-2 rounded bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400" />
+              <label className="text-sm font-medium">Email (Read Only)</label>
+              <input value={user.email} disabled className="border border-zinc-300 dark:border-zinc-700 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-zinc-500 w-full" />
             </div>
 
             <div className="flex flex-col gap-1">
-              <label htmlFor="avatar_file" className="text-sm font-medium text-black dark:text-white">Profile Picture</label>
+              <label htmlFor="avatar_file" className="text-sm font-medium">Profile Picture</label>
               {profile?.avatar_url && (
                 <img src={profile.avatar_url} alt="Profile" className="w-24 h-24 rounded-full object-cover mb-2" />
               )}
@@ -80,7 +80,7 @@ export default async function ProfilePage() {
                   id="avatar_file" 
                   name="avatar_file" 
                   accept="image/*"
-                  className="border p-2 rounded text-black dark:text-white dark:bg-gray-800" 
+                  className="border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-2 rounded-lg text-zinc-900 dark:text-white w-full" 
               />
             </div>
 

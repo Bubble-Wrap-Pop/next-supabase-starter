@@ -31,7 +31,7 @@ export default async function DashboardPage() {
     <PageContainer>
       <div className="max-w-4xl mx-auto">
         <header className="flex justify-between items-center mb-8 pb-4 border-b">
-          <h1 className="text-3xl font-bold text-black dark:text-white">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">Dashboard</h1>
           <form action={signout}>
             <Button type="submit" variant="destructive">
               Sign Out
@@ -62,10 +62,10 @@ export default async function DashboardPage() {
             </div>
           </Card>
 
-          <Card className="flex justify-between items-center">
+          <Card className="flex-row justify-between items-center">
             <div>
-              <h2 className="text-xl font-semibold text-black dark:text-white">Profile Management</h2>
-              <p className="text-gray-600 dark:text-gray-400">Update your public profile details and avatar.</p>
+              <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">Profile Management</h2>
+              <p className="text-zinc-600 dark:text-zinc-400">Update your public profile details and avatar.</p>
             </div>
             <Button href="/profile">
               Edit Profile
