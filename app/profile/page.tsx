@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { PageContainer } from '@/components/ui/PageGradientContainer'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
+import { AvatarInput } from '@/components/client/AvatarSelection'
 
 export default async function ProfilePage() {
   const supabase = await createSupabaseServerClient()
@@ -74,23 +75,7 @@ export default async function ProfilePage() {
 
             <div className="flex flex-col gap-1">
               <label htmlFor="avatar_file" className="text-sm font-medium">Profile Picture</label>
-              {profile?.avatar_url && (
-                <div className="flex flex-col gap-3 mb-2">
-                  <img src={profile.avatar_url} alt="Profile" className="w-24 h-24 rounded-full object-cover border border-zinc-200 dark:border-zinc-700" />
-                  <label className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 cursor-pointer">
-                    <input type="checkbox" name="remove_avatar" value="true" className="rounded border-zinc-300 dark:border-zinc-700" />
-                    Remove current picture
-                  </label>
-                </div>
-              )}
-              <input type="hidden" name="existing_avatar_url" value={profile?.avatar_url || ''} />
-              <input 
-                type="file"
-                id="avatar_file" 
-                name="avatar_file" 
-                accept="image/*"
-                className="w-full cursor-pointer rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-600 transition-all file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-zinc-100 file:px-4 file:py-1 file:text-sm file:font-semibold file:text-zinc-900 hover:file:bg-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400 dark:file:bg-zinc-800 dark:file:text-white dark:hover:file:bg-zinc-700"
-            />
+              <AvatarInput existingAvatarUrl={profile?.avatar_url} />
             </div>
 
             <Button type="submit" className="mt-4">
