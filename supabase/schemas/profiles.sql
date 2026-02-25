@@ -2,7 +2,8 @@ create table profiles (
   id uuid references auth.users not null primary key,
   email text not null,
   avatar_url text,
-  updated_at timestamp with time zone default now()
+  updated_at timestamp with time zone default now(),
+  full_name text
 );
 
 create function public.handle_updated_at()

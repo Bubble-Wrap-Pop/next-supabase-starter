@@ -56,6 +56,7 @@ export default async function DashboardPage() {
               )}
               <div className="space-y-2 text-zinc-600 dark:text-zinc-400">
                 <p><span className="font-medium text-zinc-900 dark:text-zinc-300">Email:</span> {user.email}</p>
+                <p><span className="font-medium text-zinc-900 dark:text-zinc-300">Full Name:</span> {profile?.full_name}</p>
                 <p><span className="font-medium text-zinc-900 dark:text-zinc-300">User ID:</span> {user.id}</p>
                 <p><span className="font-medium text-zinc-900 dark:text-zinc-300">Last Sign In:</span> {new Date(user.last_sign_in_at!).toLocaleString()}</p>
               </div>

@@ -23,6 +23,8 @@ export default async function ProfilePage() {
     const supabase = await createSupabaseServerClient()
     const { data: { user } } = await supabase.auth.getUser()
 
+    const fullName = formData.get('full_name') as string;
+
     const removeAvatar = formData.get('remove_avatar') === 'true';
     let avatarUrl = formData.get('existing_avatar_url') as string;
     const avatarFile = formData.get('avatar_file') as File;
@@ -45,6 +47,7 @@ export default async function ProfilePage() {
 
     const updates = {
       avatar_url: avatarUrl,
+      full_name: fullName,
     }
 
     const { error } = await supabase
@@ -71,6 +74,11 @@ export default async function ProfilePage() {
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Email (Read Only)</label>
               <input value={user.email} disabled className="border border-zinc-300 dark:border-zinc-700 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-zinc-500 w-full" />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label htmlFor="full_name" className="text-sm font-medium">Full Name</label>
+              <input type="text" name="full_name" id="full_name" className="border border-zinc-300 dark:border-zinc-700 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-zinc-500 w-full" placeholder={profile?.full_name || 'Enter your full name'} />
             </div>
 
             <div className="flex flex-col gap-1">
