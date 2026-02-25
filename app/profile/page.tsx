@@ -78,7 +78,7 @@ export default async function ProfilePage() {
 
             <div className="flex flex-col gap-1">
               <label htmlFor="full_name" className="text-sm font-medium">Full Name</label>
-              <input type="text" name="full_name" id="full_name" className="border border-zinc-300 dark:border-zinc-700 p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-zinc-500 w-full" placeholder={profile?.full_name || 'Enter your full name'} />
+              <input type="text" name="full_name" id="full_name" className="border border-zinc-300 dark:border-zinc-700 p-2 rounded-lg bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white w-full placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder='Enter your full name' defaultValue={profile?.full_name || ''} />
             </div>
 
             <div className="flex flex-col gap-1">
