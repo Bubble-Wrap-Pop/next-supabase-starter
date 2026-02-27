@@ -97,15 +97,6 @@ Test files are co-located next to the files they test using a `.test.tsx` or `.t
 * To run the test suite in watch mode: `npm run test:watch`
 * To add new tests: Create a new file next to your component named `ComponentName.test.tsx` and import `render` and `screen` from `@testing-library/react`.
 
-## Deployment Instructions
-To deploy this application to a production environment like Vercel:
-
-1. Create a new project on the Supabase website.
-2. Push your Next.js code to a GitHub repository.
-3. Import the repository into Vercel.
-4. Go to your Vercel project settings and add your production `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from your Supabase dashboard.
-5. Click deploy. Vercel will build and host your Next.js application.
-
 ## GitHub Actions Setup
 This project includes a continuous integration workflow that automatically runs your database migrations when you push code to the main branch.
 
@@ -117,6 +108,16 @@ To configure this workflow:
    * `SUPABASE_DB_PASSWORD`: The database password for your production Supabase project.
    * `SUPABASE_PROJECT_ID`: The unique reference ID for your production Supabase project found in your project URL.
 4. Once added, any push to the main branch will trigger the `.github/workflows/supabase-migrations.yml` file and sync your database schemas.
+
+## Deployment Instructions
+To deploy this application to a production environment like Vercel:
+
+1. Create a new project on the Supabase website.
+2. Push your Next.js code to a GitHub repository.
+3. Import the repository into Vercel.
+4. Go to your Vercel project settings and add your production `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from your Supabase dashboard.
+5. Click deploy. Vercel will build and host your Next.js application.
+6. In your production Supabase dashboard, go to Authentication > URL Configuration and update the Site URL to match your deployed Vercel domain.
 
 ## Troubleshooting
 * **Docker Errors:** If the setup script or `npx supabase start` fails, ensure Docker Desktop is open and actively running in the background.

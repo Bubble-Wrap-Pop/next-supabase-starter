@@ -19,19 +19,13 @@ export default async function SignupPage(props: {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        // This ensures the user is redirected correctly after email confirmation
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/callback`,
-      },
     })
 
     if (error) {
       return redirect('/signup?error=' + encodeURIComponent(error.message))
     }
 
-    // Usually, you'd show a "Check your email" message here, 
-    // but for this assignment, we'll head toward the dashboard path
-    return redirect('/dashboard')
+    return redirect('/login?message=' + encodeURIComponent('Account created successfully. Please check your email for verification.'))
   }
 
   return (
