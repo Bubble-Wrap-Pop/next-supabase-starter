@@ -9,9 +9,9 @@ export default async function Home() {
 
   return (
     <PageContainer className="flex flex-col items-center justify-center">
-      <main className="flex w-full max-w-4xl flex-col items-center justify-center px-8 text-center">
+      <main className="flex w-full max-w-4xl flex-col items-center justify-center px-4 sm:px-8 text-center">
         
-        <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-7xl">
+        <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white sm:text-5xl md:text-7xl">
           Next.js + Supabase
         </h1>
         
@@ -21,15 +21,15 @@ export default async function Home() {
 
         <div className="mb-16 flex flex-col gap-4 sm:flex-row sm:gap-6">
           {user ? (
-            <Button href="/dashboard">
+            <Button href="/dashboard" className="w-full sm:w-auto">
               Go to Dashboard
             </Button>
           ) : (
             <>
-              <Button href="/login">
+              <Button href="/login" className="w-full sm:w-auto">
                 Log In
               </Button>
-              <Button href="/signup" variant="outline">
+              <Button href="/signup" variant="outline" className="w-full sm:w-auto">
                 Sign Up
               </Button>
             </>

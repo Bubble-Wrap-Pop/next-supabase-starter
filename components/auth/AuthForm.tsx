@@ -71,7 +71,7 @@ export function AuthForm({
 
             {children}
 
-            <Button type="submit" className="mt-2">
+            <Button type="submit" className="mt-2 w-full">
               {submitLabel}
             </Button>
 
