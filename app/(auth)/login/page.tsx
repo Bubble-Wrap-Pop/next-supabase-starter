@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { AuthForm } from '@/components/auth/AuthForm'
 
 export default async function LoginPage(props: { 
-  searchParams: Promise<{ error?: string }> 
+  searchParams: Promise<{ error?: string, message?: string }> 
 }) {
   const searchParams = await props.searchParams
 
@@ -32,6 +32,7 @@ export default async function LoginPage(props: {
     <AuthForm
       title="Log In"
       error={searchParams.error}
+      message={searchParams.message}
       submitLabel="Log In"
       footer={
         <p className="text-center text-sm mt-4 text-gray-600">
