@@ -63,9 +63,9 @@ export default async function ProfilePage() {
     <PageContainer>
       <div className="max-w-2xl mx-auto">
         <Card>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Edit Profile</h1>
-            <Button href="/dashboard" variant="outline" className="!px-4 !py-2 w-full sm:w-auto">
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white truncate">Edit Profile</h1>
+            <Button href="/dashboard" variant="outline" className="!px-4 !py-2 shrink-0">
               Back to Dashboard
             </Button>
           </div>
@@ -86,7 +86,7 @@ export default async function ProfilePage() {
               <AvatarInput existingAvatarUrl={profile?.avatar_url} />
             </div>
 
-            <Button type="submit" className="mt-4">
+            <Button type="submit" className="mt-4 w-full">
               Save Changes
             </Button>
           </form>
