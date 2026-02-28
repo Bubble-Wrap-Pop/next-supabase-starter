@@ -55,12 +55,10 @@ export default async function DashboardPage() {
                 </div>
               )}
               <div className="space-y-2 text-zinc-600 dark:text-zinc-400 min-w-0 w-full">
-              <div className="space-y-2 text-zinc-600 dark:text-zinc-400 min-w-0 w-full">
                 <p className="break-all"><span className="font-medium text-zinc-900 dark:text-zinc-300 mr-1">Email:</span>{user.email}</p>
                 <p className="break-words"><span className="font-medium text-zinc-900 dark:text-zinc-300 mr-1">Full Name:</span>{profile?.full_name}</p>
                 <p className="break-all"><span className="font-medium text-zinc-900 dark:text-zinc-300 mr-1">User ID:</span>{user.id}</p>
                 <p className="break-words"><span className="font-medium text-zinc-900 dark:text-zinc-300 mr-1">Last Sign In:</span>{user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : 'First login'}</p>
-              </div>
               </div>
             </div>
           </Card>
