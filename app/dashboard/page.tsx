@@ -42,15 +42,15 @@ export default async function DashboardPage() {
         <main className="grid gap-6">
           <Card>
             <h2 className="text-xl font-semibold mb-4 text-zinc-900 dark:text-white">User Information</h2>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6">
               {profile?.avatar_url ? (
                 <img 
                   src={profile.avatar_url} 
                   alt="Avatar" 
-                  className="w-24 h-24 rounded-full object-cover border border-zinc-200 dark:border-zinc-700"
+                  className="w-24 h-24 shrink-0 rounded-full object-cover border border-zinc-200 dark:border-zinc-700"
                 />
               ) : (
-                <div className="w-24 h-24 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 border border-zinc-300 dark:border-zinc-700">
+                <div className="w-24 h-24 shrink-0 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-zinc-500 border border-zinc-300 dark:border-zinc-700">
                   No Image
                 </div>
               )}
